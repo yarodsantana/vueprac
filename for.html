@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <span v-for="n in 10">{{n}}</span>
+      <hr />
+      <ul>
+        <li v-for="pais in paises">{{pais}}</li>
+      </ul>
+      <hr />
+      <ul>
+        <li v-for="(valor, llave)   in carros">{{llave}} - {{valor}}</li>
+      </ul>
+      <hr /> -->
+      <div
+        v-for="(producto, index) in productos"
+        :key="index"
+        :style="[producto.cantidad < 1 ? {'opacity' : '.5'} :'']"
+      >
+        <h3 style="color: red" v-if="producto.cantidad < 1">
+          Se agoto {{producto.name}}
+        </h3>
+        <p>Nombre :{{producto.name}}</p>
+        <p>Precio :{{producto.precio}}</p>
+        <p>Cantidad :{{producto.cantidad}}</p>
+        <input type="number" v-model.number="producto.cantidad" />
+        <hr />
+      </div>
+      <p>Total productos : {{total}}</p>
+      <input type="text" v-model="nombre" />
+      <button @click="addItem">Agregar</button>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        nombre: "",
+        paises: ["Arg", "Ecu", "Bol", "Pe", "CH"],
+        carros: {
+          marca: "Toyota",
+          modelo: 2020,
+          nombre: "EESS",
+          color: "Azul",
+          precio: "15000",
+        },
+        productos: [
+          { name: "Zapatos", precio: 100, cantidad: 0 },
+          { name: "Polera", precio: 150, cantidad: 3 },
+          { name: "Polo", precio: 80, cantidad: 0 },
+        ],
+      },
+      computed: {
+        total() {
+          return this.productos.reduce((suma, producto) => {
+            return suma + producto.cantidad;
+          }, 0);
+        },
+      },
+      methods: {
+        addItem() {
+          if (this.nombre != "" && this.nombre.length > 3) {
+            this.productos.push({ name: this.nombre, precio: 5, cantidad: 5 });
+          }
+        },
+      },
+    });
+  </script>
+</html>

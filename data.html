@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{nombre}}</p>
+      <p>{{precioCarro}}</p>
+      <p>{{vendido}}</p>
+      <p>{{colores}}</p>
+      <p>{{carro}}</p>
+      <p>solo Rojo {{colores[0]}}</p>
+      <p>Marca {{carro.Marca}}</p>
+      {{sumar()}}<br />
+      {{restar()}}
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        nombre: "Venta Carro",
+        precioCarro: 3500,
+        vendido: false,
+        colores: ["Rojo", "Verde", "Azul", "Negro"],
+        carro: { Marca: "Lambo", Modelo: "2020" },
+      },
+      methods: {
+        sumar: function () {
+          return this.precioCarro + 500;
+        },
+        restar: function () {
+          return this.precioCarro - 500;
+        },
+      },
+    });
+  </script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>Nombre : <input type="text" v-model="nombre" /></p>
+      <p>Apellido :<input type="text" v-model="apellido" /></p>
+      {{NombreCompleto}} <br />
+      {{NombreFormateado}} <br />
+      {{NombreFormateadoMetodo()}}
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        nombre: "CarOl",
+        apellido: "Santa",
+      },
+      computed: {
+        NombreCompleto: function () {
+          return this.nombre + " " + this.apellido + " " + Date.now();
+        },
+        NombreFormateado: function () {
+          return (
+            this.nombre.charAt(0).toUpperCase() +
+            this.nombre.slice(1).toLowerCase()
+          );
+        },
+      },
+      methods: {
+        NombreFormateadoMetodo: function () {
+          return (
+            this.nombre.charAt(0).toUpperCase() +
+            this.nombre.slice(1).toLowerCase()
+          );
+        },
+      },
+    });
+  </script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .MyDiv {
+        width: 180px;
+        height: 30px;
+        padding: 10px;
+        text-align: center;
+        line-height: 30px;
+        margin: 20px;
+      }
+      .active {
+        border: solid 3px #00ff00;
+      }
+      .noactive {
+        border: solid 3px #ff0000;
+      }
+    </style>
+    <div id="app">
+      <a v-bind:href="url">{{url}}</a>
+      <div class="MyDiv" v-bind:class="claseDinam" @click="cambio">
+        Esta activo? : {{active}}
+        <p>active : {{active}}</p>
+        <p>no active : {{claseDinam}}</p>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        url: "https://wwww.udemy.com",
+        active: false,
+      },
+      computed: {
+        claseDinam() {
+          return this.active ? "active" : "noactive";
+        },
+      },
+      methods: {
+        cambio() {
+          this.active = !this.active;
+        },
+      },
+    });
+  </script>
+</html>

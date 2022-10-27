@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header></header>
+    <section id="content">
+      <main id="vueMain">
+        <h1 ref="myH1">Nombre: {{name}}</h1>
+        <p ref="myP">Valor: {{valor}}</p>
+        <button @click="sumar" ref="myBtn">Sumar</button>
+        <button @click="destruir">Evento Destruir</button>
+      </main>
+      <aside id="vueAside">
+        <h1>Nombre: {{name}}</h1>
+        <p>Valor: {{valor}}</p>
+        <button @click="sumar">Sumar</button>
+      </aside>
+    </section>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    const vueMain = new Vue({
+      el: "#vueMain",
+      data: {
+        name: "Instancia 01",
+        valor: 5,
+      },
+      methods: {
+        sumar() {
+          this.valor += 5;
+          //   this.$refs.myP.innerHTML = "XXX";
+          setTimeout(() => {
+            vueAside.name = "Cambio el nombre ";
+          }, 2000);
+        },
+        destruir() {
+          this.$destroy();
+        },
+      },
+      beforeCreate: function () {},
+      created: function () {},
+      beforeMount: function () {},
+      mounted: function () {},
+      beforeUpdate: function () {},
+      updated: function () {},
+      beforeDestroy: function () {},
+      destroy: function () {},
+    });
+
+    // vueMain.name = "JS name";
+    // vueMain.sumar();
+    // vueMain.$refs.myH1.style.color = "red";
+    // console.log(vueMain.$refs);
+
+    const vueAside = new Vue({
+      el: "#vueAside",
+      data: {
+        name: "Instancia 02",
+        valor: 5,
+      },
+      methods: {
+        sumar() {
+          this.valor += 2;
+          vueMain.valor += 2;
+        },
+      },
+    });
+  </script>
+</html>
